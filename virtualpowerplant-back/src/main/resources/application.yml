@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/vpp_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: secret
+    password: verysecret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+# 虚拟电厂配置
+vpp:
+  modbus:
+    # 默认连接超时时间（毫秒）
+    connect-timeout: 5000
+    # 默认读取超时时间（毫秒）
+    read-timeout: 3000
+    # 数据采集间隔（秒） - 当前设置为2小时（7200秒）
+    collection-interval: 7200
+    # 模拟模式（true=模拟数据，false=真实Modbus通信）
+    simulation-mode: true
+  # 设备配置示例
+  devices:
+    # 可以在这里预配置一些测试设备
+    - name: "测试电表001"
+      ip: "192.168.1.100"
+      port: 502
+      slave-id: 1
+      type: "ELECTRIC_METER"
+      enabled: false
+    - name: "测试储能设备001"  
+      ip: "192.168.1.101"
+      port: 502
+      slave-id: 1
+      type: "ENERGY_STORAGE"
+      enabled: false
+
+logging:
+  level:
+    org.example.virtualpowerplantback: DEBUG
+    com.digitalpetri.modbus: DEBUG

@@ -1,0 +1,1212 @@
+.resource-monitoring-container {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+    color: #fff;
+    overflow: hidden;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 页面标题区域 */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 150, 255, 0.1) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(15px);
+    flex-shrink: 0;
+    height: 70px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.title-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 150, 255, 0.3) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.title-icon-wrapper .title-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.8));
+}
+
+.title-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.page-subtitle {
+    font-size: 12px;
+    color: rgba(0, 212, 255, 0.8);
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.header-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+.stat-icon {
+    font-size: 20px;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+/* 图表网格布局 */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* 当有用户用电信息卡片时，调整网格布局 */
+.charts-grid:has(.user-electricity-card) {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 图表卡片 */
+.chart-card {
+    background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(15, 20, 25, 0.9) 100%);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+    padding: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #00d4ff;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+    flex-shrink: 0;
+}
+
+.chart-container {
+    width: 100%;
+    height: calc(100% - 35px);
+    flex: 1;
+}
+
+/* 响应式设计 */
+@media (max-width: 1400px) {
+    .page-title {
+        font-size: 18px;
+    }
+    
+    .stat-value {
+        font-size: 14px;
+    }
+    
+    .card-title {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header-stats {
+        gap: 15px;
+    }
+    
+    .stat-label {
+        font-size: 10px;
+    }
+    
+    .stat-value {
+        font-size: 12px;
+    }
+    
+    .chart-card {
+        padding: 6px;
+    }
+    
+    .card-title {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        height: auto;
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .header-stats {
+        gap: 10px;
+    }
+    
+    .charts-grid {
+        height: calc(100vh - 100px);
+    }
+}
+
+/* 发光效果 */
+.chart-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 212, 255, 0.1) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+.chart-card:hover::before {
+    opacity: 1;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.6);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.8);
+}
+
+.resource-monitoring {
+    padding: 20px;
+    height: 100%;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.module-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.module-header h2 {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.module-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1em;
+}
+
+.monitoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.monitoring-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.monitoring-card:hover {
+    transform: translateY(-5px);
+}
+
+.monitoring-card.primary .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.monitoring-card.secondary .card-header {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.monitoring-card.accent .card-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.monitoring-card.info .card-header {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.card-header {
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.online {
+    background: #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.resource-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.resource-capacity {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.resource-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.status-value {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.status-value.online {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.status-value.maintenance {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+}
+
+.current-output {
+    font-weight: bold;
+    color: #333;
+}
+
+.storage-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.storage-stat {
+    text-align: center;
+    padding: 15px;
+    background: rgba(245, 87, 108, 0.05);
+    border-radius: 10px;
+}
+
+.stat-label {
+    display: block;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.battery-indicator {
+    position: relative;
+    height: 30px;
+    background: #e9ecef;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.battery-level {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 15px;
+    transition: width 0.3s ease;
+}
+
+.battery-percentage {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.load-chart {
+    height: 200px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.current-load {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #4facfe;
+}
+
+.chart-placeholder {
+    height: 150px;
+    background: rgba(79, 172, 254, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+}
+
+.chart-data {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 100%;
+    gap: 5px;
+}
+
+.data-point {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 3px;
+    width: 20px;
+    transition: height 0.3s ease;
+    opacity: 0.8;
+}
+
+.data-point:hover {
+    opacity: 1;
+}
+
+.system-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.metric-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(67, 233, 123, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #43e97b;
+}
+
+.metric-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.metric-icon.frequency {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.metric-icon.voltage {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.metric-icon.power {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.metric-icon::before {
+    content: "⚡";
+}
+
+.metric-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-label {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 3px;
+}
+
+.metric-value {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* ==================== 用户用电信息样式 ==================== */
+
+/* 用户用电信息卡片特殊样式 */
+.user-electricity-card {
+    grid-column: span 2; /* 占据两列 */
+    min-height: 500px;
+}
+
+.user-search-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.user-search-input {
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 12px;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.user-search-input:focus {
+    outline: none;
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.user-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.user-count {
+    font-size: 12px;
+    color: rgba(0, 212, 255, 0.8);
+    font-weight: 500;
+}
+
+.user-electricity-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-table-container {
+    flex: 1;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    max-height: 320px; /* 固定高度，大约显示6行数据 */
+    min-height: 320px;
+    position: relative;
+}
+
+/* 用户表格滚动条样式 */
+.user-table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.user-table-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.user-table-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.6) 0%, rgba(0, 150, 255, 0.8) 100%);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.user-table-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.8) 0%, rgba(0, 150, 255, 1) 100%);
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.user-table thead {
+    background: rgba(0, 212, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.user-table th {
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: #00d4ff;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+}
+
+.user-table td {
+    padding: 10px 8px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    color: #fff;
+}
+
+.user-row {
+    transition: all 0.3s ease;
+}
+
+.user-row:hover {
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.user-name {
+    font-weight: 600;
+    color: #00d4ff;
+}
+
+.user-type {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.user-address {
+    color: rgba(0, 212, 255, 0.8);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.consumption, .capacity {
+    font-family: 'Courier New', monospace;
+    color: #4ECDC4;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    display: inline-block;
+    min-width: 50px;
+}
+
+.station-count {
+    text-align: center;
+    color: #FFE66D;
+    font-weight: 600;
+}
+
+.detail-btn {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 150, 255, 0.3) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 6px;
+    color: #00d4ff;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.detail-btn:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 150, 255, 0.4) 100%);
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* 分页样式 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.page-btn {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 150, 255, 0.3) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 6px;
+    color: #00d4ff;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 150, 255, 0.4) 100%);
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+/* 滚动提示样式 */
+.scroll-hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    margin-top: 10px;
+}
+
+.hint-text {
+    font-size: 11px;
+    color: rgba(0, 212, 255, 0.8);
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ==================== 用户详情弹窗样式 ==================== */
+
+.user-detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(15, 20, 25, 0.95) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 150, 255, 0.1) 100%);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    margin: 0;
+}
+
+.user-icon {
+    font-size: 24px;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff6b6b;
+}
+
+.modal-body {
+    padding: 25px;
+    overflow-y: auto;
+    max-height: calc(90vh - 100px);
+}
+
+/* 用户基本信息 */
+.user-basic-info {
+    margin-bottom: 30px;
+}
+
+.info-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.info-card h3 {
+    color: #00d4ff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid rgba(0, 212, 255, 0.4);
+}
+
+.info-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+/* 电站信息样式 */
+.power-stations-section h3 {
+    color: #00d4ff;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.stations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.station-card {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.station-card:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.station-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 212, 255, 0.05) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.station-card:hover::before {
+    opacity: 1;
+}
+
+.station-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.station-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.station-icon {
+    font-size: 20px;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+}
+
+.station-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00d4ff;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.station-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+
+.station-info {
+    position: relative;
+    z-index: 1;
+}
+
+.station-type {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* 电站地址样式 */
+.station-address {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 15px;
+    padding: 8px 10px;
+    background: rgba(0, 212, 255, 0.08);
+    border-radius: 6px;
+    border-left: 3px solid rgba(0, 212, 255, 0.4);
+}
+
+.address-icon {
+    font-size: 12px;
+    filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.6));
+}
+
+.address-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+.station-metrics {
+    margin-bottom: 20px;
+}
+
+.metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid rgba(0, 212, 255, 0.3);
+}
+
+.metric-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+.power-value {
+    color: #4ECDC4;
+}
+
+.efficiency-value {
+    color: #FFE66D;
+}
+
+/* 效率进度条 */
+.efficiency-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.efficiency-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    min-width: 60px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.efficiency-text {
+    font-size: 11px;
+    color: #fff;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: right;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .modal-content {
+        width: 95%;
+    }
+
+    .stations-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 98%;
+        margin: 10px;
+    }
+
+    .modal-header {
+        padding: 15px 20px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-row {
+        grid-template-columns: 1fr;
+    }
+}
