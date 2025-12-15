@@ -94,7 +94,7 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  height: 70px;
+  height: 90px;
 }
 
 .monitor-card::before {
@@ -172,14 +172,17 @@
   display: flex;
   flex-direction: column;
   grid-row: span 2;
+  max-height: 910px;
 }
 
 /* 收益预测区域 */
 .revenue-section {
   background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(37, 37, 53, 0.9) 100%);
   border: 2px solid rgba(0, 150, 255, 0.3);
+  padding-bottom: 118px;
+  border-bottom: 1px solid rgba(0, 150, 255, 0.3);
   border-radius: 15px;
-  padding: 10px;
+
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 30px rgba(0, 150, 255, 0.15);
   overflow: hidden;
@@ -204,14 +207,17 @@
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 150, 255, 0.2);
   border-radius: 10px;
-  padding: 8px;
+  padding: 5px;
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   flex: 1;
-  min-width: 120px;
-  max-width: 180px;
+  min-width: 100px;
+  max-width: 280px;
+  margin-left: 10px;
+  margin-right: 15px;
+  padding-bottom: 6px;
 }
 
 .revenue-icon {
@@ -245,18 +251,31 @@
 
 /* 对比分析区域 */
 .comparison-section {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(37, 37, 53, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 35, 50, 0.92) 0%,
+    rgba(37, 37, 53, 0.92) 100%
+  );
   border: 2px solid rgba(0, 150, 255, 0.3);
   border-radius: 15px;
-  padding: 16px;
+  /* ⭐ 下边距给足，防止“看起来被裁” */
+  padding: 16px 16px 24px;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 30px rgba(0, 150, 255, 0.15);
-  overflow: auto; /* 添加滚动条确保内容可见 */
+  /* ⭐ 关键 1：高度策略 */
+  max-height: 740px;      /* 你说这个值是最准的，就用它 */
+  height: auto;
+  /* ⭐ 关键 2：滚动只在自己身上 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* ⭐ 关键 3：不要 flex:1 */
   display: flex;
   flex-direction: column;
-  min-height: 0; /* 允许收缩 */
-  flex: 1; /* 占用剩余空间 */
+  flex: none;
+  /* Grid 环境下必须 */
+  min-height: 0;
 }
+
 
 .comparison-content {
   flex: 1;
@@ -406,19 +425,20 @@
 }
 
 .before-value .value {
-  font-size: 1.2em;
+  font-size: 1.0em;
   font-weight: 600;
+  display: inline-flex;
   color: #ff6b6b;
 }
 
 .after-value .value {
-  font-size: 1.2em;
+  font-size: 1.0em;
   font-weight: 600;
   color: #4ecdc4;
 }
 
 .improvement-arrow {
-  font-size: 1.5em;
+  font-size: 1em;
   color: #00c6ff;
   animation: arrowPulse 2s ease-in-out infinite;
 }
@@ -503,7 +523,9 @@
   height: 230px; /* 增加高度 */
   width: 100%;
   min-width: 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px; /* 给滚动条留空间 */
 }
 
 .chart-grid {
@@ -514,21 +536,23 @@
   padding-right: 60px;
   min-width: 0;
   overflow: hidden;
+  width: max-content;
 }
 
 .chart-column {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
   min-width: 0;
   max-width: none;
+  width: 36px;
+  flex: none;
 }
 
 .chart-bars {
   display: flex;
-  gap: 2px;
+  gap: 6px;
   align-items: flex-end;
   height: 200px; /* 增加高度 */
   width: 100%;
@@ -536,10 +560,11 @@
 }
 
 .chart-bar {
-  width: 6px;
+  width: 8px;
   border-radius: 2px 2px 0 0;
   transition: all 0.3s ease;
   cursor: pointer;
+  flex: none;
 }
 
 .chart-bar.before {
@@ -594,6 +619,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 10px; /* 添加底部间距 */
+  padding-right: 12px;
 }
 
 .performance-item {
@@ -624,9 +650,10 @@
 }
 
 .performance-bar .bar-label {
-  min-width: 60px;
+  min-width: 20px;
   font-size: 0.8em;
   color: rgba(255, 255, 255, 0.7);
+  padding-left: 12px;
 }
 
 .performance-bar .bar-fill {
@@ -1039,9 +1066,9 @@
   overflow: auto;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 15px;
+  padding: 10px;
   min-height: 250px;
-  max-height: 350px;
+  max-height: 800px;
   border: 1px solid rgba(0, 150, 255, 0.2);
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -1902,26 +1929,26 @@
 
 /* 优化方案样式 */
 .optimization-plan {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(37, 37, 53, 0.95) 100%);
-  border: 1px solid rgba(0, 150, 255, 0.3);
-  border-radius: 15px;
-  padding: 25px;
-  margin-top: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 150, 255, 0.2);
-  flex: 1;
-  min-height: 0;
-  max-height: none;
-  overflow-y: auto;
+  flex: 1;                 /* ⭐ 吃掉剩余高度 */
+  min-height: 0;           /* ⭐ 必须 */
+  padding: 80px 25px 100px; /* 顶部下移的正确方式 */
+  overflow-y: auto;        /* ⭐ 唯一滚动点 */
+  overflow-x: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 35, 50, 0.95),
+    rgba(37, 37, 53, 0.95)
+  );
+  border-radius: 0 0 16px 16px;
 }
 
 .plan-header {
+  flex-shrink: 0;          /* ⭐ 不被压缩 */
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(0, 150, 255, 0.25);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(0, 150, 255, 0.2);
+  align-items: center;
 }
 
 .plan-title h3 {
@@ -2568,37 +2595,27 @@
 }
 
 .optimization-modal-mask {
-  position: fixed;          /* ⭐ 必须 fixed，不能 absolute */
-  inset: 0;                 /* top/right/bottom/left = 0 */
+  position: fixed;
+  inset: 0;
   z-index: 99999;
-
   background: rgba(6, 12, 28, 0.75);
-
+  backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* 防止页面本身滚动 */
-  overflow: hidden;
-  isolation: isolate;
+  overflow: hidden; /* ⭐ 禁止页面滚动 */
 }
 
 .optimization-modal {
-  position: relative;
-
   width: 94vw;
   max-width: 1600px;
-
-  height: 92vh;             /* ⭐ 定高，滚动才生效 */
+  height: 92vh;        /* ⭐ 唯一 vh 定位点 */
   max-height: 92vh;
-
   background: linear-gradient(180deg, #0b1c2d, #081420);
   border-radius: 16px;
-
   display: flex;
   flex-direction: column;
-
-  overflow: hidden;         /* ⭐ 外层不滚 */
+  overflow: hidden;    /* ⭐ 关键：壳永远不滚 */
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.6),
     0 0 40px rgba(0, 150, 255, 0.25);

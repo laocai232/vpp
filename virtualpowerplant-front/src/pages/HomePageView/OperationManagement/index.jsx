@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 
+function formatEnergy(value) {
+  if (value >= 1000) {
+    return `${(value / 1000).toFixed(1)}GWh`;
+  }
+  return `${value.toFixed(0)}MWh`;
+}
+
+
 const OperationManagement = () => {
   const [monitoringData, setMonitoringData] = useState({
     totalPower: 2350,
@@ -809,14 +817,14 @@ const OperationManagement = () => {
                     <div className="before-value">
                       <span className="label">调度前</span>
                       <span className="value">
-                        {comparisonData.before.powerOutput}MWh
+                        {formatEnergy(comparisonData.before.powerOutput)}
                       </span>
                     </div>
                     <div className="improvement-arrow">➡️</div>
                     <div className="after-value">
                       <span className="label">调度后</span>
                       <span className="value">
-                        {comparisonData.after.powerOutput}MWh
+                        {formatEnergy(comparisonData.after.powerOutput)}
                       </span>
                     </div>
                   </div>
