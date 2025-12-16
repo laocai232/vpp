@@ -484,7 +484,6 @@ const OperationManagement = () => {
                     className="optimization-modal"
                     onClick={(e) => e.stopPropagation()}
                   >
-
                     <div className="optimization-plan">
                       <div className="plan-header">
                         <div className="plan-title">
