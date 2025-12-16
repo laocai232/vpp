@@ -734,23 +734,23 @@ export default function ResourceMonitoring() {
     const initPerformanceMetricsChart = () => {
         if (!performanceMetricsRef.current) return;
         const chart = echarts.init(performanceMetricsRef.current, 'dark');
-        
+
         // 生成时间轴数据 (12:00 - 21:00)
         const timeData = [];
         for (let hour = 12; hour <= 21; hour++) {
             timeData.push(`${hour}:00`);
         }
-        
+
         // 模拟历史负荷数据 (MW)
         const historicalLoad = [95, 98, 105, 110, 115, 112, 118, 125, 123, 107];
-        
+
         // 模拟预测负荷数据 (MW)
         const predictedLoad = [95, 98, 105, 110, 115, 112, 118, 125, 123, 107];
-        
+
         // 模拟置信区间数据 (MW)
         const upperConfidence = [115, 118, 125, 130, 135, 132, 138, 145, 143, 127];
         const lowerConfidence = [75, 78, 85, 90, 95, 92, 98, 105, 103, 87];
-        
+
         const option = {
             backgroundColor: 'transparent',
             title: {
@@ -942,7 +942,7 @@ export default function ResourceMonitoring() {
                 }
             ]
         };
-        
+
         chart.setOption(option);
     };
 
@@ -1108,7 +1108,7 @@ export default function ResourceMonitoring() {
                 {/* 用户用电信息 */}
                 <div className="chart-card user-electricity-card">
                     <div className="card-title">
-                        <span className="title-icon">�</span>
+                        <span className="title-icon"> </span>
                         用户用电信息
                         <div className="user-search-controls">
                             <input
@@ -1125,44 +1125,44 @@ export default function ResourceMonitoring() {
                         <div className="user-table-container">
                             <table className="user-table">
                                 <thead>
-                                    <tr>
-                                        <th>用户名</th>
-                                        <th>用户类型</th>
-                                        <th>所在地区</th>
-                                        <th>月用电量(MWh)</th>
-                                        <th>合同容量(kW)</th>
-                                        <th>状态</th>
-                                        <th>电站数量</th>
-                                        <th>操作</th>
-                                    </tr>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>用户类型</th>
+                                    <th>所在地区</th>
+                                    <th>月用电量(MWh)</th>
+                                    <th>合同容量(kW)</th>
+                                    <th>状态</th>
+                                    <th>电站数量</th>
+                                    <th>操作</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredUsers.map(user => (
-                                        <tr key={user.id} className="user-row">
-                                            <td className="user-name">{user.name}</td>
-                                            <td className="user-type">{user.userType}</td>
-                                            <td className="user-address">{user.address}</td>
-                                            <td className="consumption">{user.monthlyConsumption.toLocaleString()}</td>
-                                            <td className="capacity">{user.contractCapacity.toLocaleString()}</td>
-                                            <td>
+                                {filteredUsers.map(user => (
+                                    <tr key={user.id} className="user-row">
+                                        <td className="user-name">{user.name}</td>
+                                        <td className="user-type">{user.userType}</td>
+                                        <td className="user-address">{user.address}</td>
+                                        <td className="consumption">{user.monthlyConsumption.toLocaleString()}</td>
+                                        <td className="capacity">{user.contractCapacity.toLocaleString()}</td>
+                                        <td>
                                                 <span
                                                     className="status-badge"
                                                     style={{ backgroundColor: getStatusColor(user.status) }}
                                                 >
                                                     {user.status}
                                                 </span>
-                                            </td>
-                                            <td className="station-count">{user.powerStations.length}</td>
-                                            <td>
-                                                <button
-                                                    className="detail-btn"
-                                                    onClick={() => handleUserClick(user)}
-                                                >
-                                                    查看详情
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                        </td>
+                                        <td className="station-count">{user.powerStations.length}</td>
+                                        <td>
+                                            <button
+                                                className="detail-btn"
+                                                onClick={() => handleUserClick(user)}
+                                            >
+                                                查看详情
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </table>
                         </div>
@@ -1348,7 +1348,7 @@ export default function ResourceMonitoring() {
                                                             style={{
                                                                 width: `${station.efficiency}%`,
                                                                 backgroundColor: station.efficiency >= 85 ? '#4ECDC4' :
-                                                                                station.efficiency >= 75 ? '#FFE66D' : '#FF6B6B'
+                                                                    station.efficiency >= 75 ? '#FFE66D' : '#FF6B6B'
                                                             }}
                                                         ></div>
                                                     </div>

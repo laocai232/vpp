@@ -173,11 +173,11 @@
     .page-title {
         font-size: 18px;
     }
-    
+
     .stat-value {
         font-size: 14px;
     }
-    
+
     .card-title {
         font-size: 13px;
     }
@@ -187,19 +187,19 @@
     .header-stats {
         gap: 15px;
     }
-    
+
     .stat-label {
         font-size: 10px;
     }
-    
+
     .stat-value {
         font-size: 12px;
     }
-    
+
     .chart-card {
         padding: 6px;
     }
-    
+
     .card-title {
         font-size: 12px;
         margin-bottom: 6px;
@@ -213,11 +213,11 @@
         padding: 8px;
         gap: 8px;
     }
-    
+
     .header-stats {
         gap: 10px;
     }
-    
+
     .charts-grid {
         height: calc(100vh - 100px);
     }
